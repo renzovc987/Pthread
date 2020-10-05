@@ -90,7 +90,6 @@ int main(int argc, char* argv[]) {
    Get_args(argc, argv);
    double start, finish, elapsed;
    thread_handles = (pthread_t*) malloc (thread_count*sizeof(pthread_t));  
-   GET_TIME(start); 
    sum = 0.0;
    flag = 0;
    for (thread = 0; thread < thread_count; thread++)  
@@ -99,8 +98,11 @@ int main(int argc, char* argv[]) {
 
    for (thread = 0; thread < thread_count; thread++) 
       pthread_join(thread_handles[thread], NULL); 
+
+   GET_TIME(start);
+   sum = Serial_pi(n);
    GET_TIME(finish);
-   elapsed = finish -start;
+   elapsed = finish - start;
 
    sum = 4.0*sum;
    printf("%s","Busy - Waiting\n");
@@ -116,19 +118,22 @@ int main(int argc, char* argv[]) {
    thread_handles2 = (pthread_t*) malloc (thread_count*sizeof(pthread_t)); 
    
    sum = 0.0;
-   GET_TIME(start2);
    for (thread2 = 0; thread2 < thread_count; thread2++)  
       pthread_create(&thread_handles2[thread2], NULL,
           Thread_summutex, (void*)thread2);  
 
    for (thread2 = 0; thread2 < thread_count; thread2++) 
       pthread_join(thread_handles2[thread2], NULL); 
+
+   sum = 4.0*sum;
+   GET_TIME(start2);
+   sum = Serial_pi(n);
    GET_TIME(finish2);
    elapsed2 = finish2 - start2;
-   sum = 4.0*sum;
    printf("%s","MUTEX \n");
    printf("Con n = %lld terminos,\n", n);
    printf("Tiempo = %e seconds\n", elapsed2);
+
    
    pthread_mutex_destroy(&mutex);
    
@@ -138,4 +143,5 @@ int main(int argc, char* argv[]) {
    free(thread_handles2);
    return 0;
 } 
+
 
