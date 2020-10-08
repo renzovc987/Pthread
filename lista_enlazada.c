@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <time.h>
 #include "timer.h"
 
             
@@ -30,6 +31,7 @@ int main(void) {
       switch (command) {
          case 'i': 
          case 'I': 
+         	srand(time(0));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
@@ -47,6 +49,7 @@ int main(void) {
             break;
          case 'm': 
          case 'M':
+         	srand(time(0));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
@@ -98,7 +101,10 @@ int Insert(int value, struct list_node_s** head_pp) {
       else
          pred_p->next = temp_p;
       return 1;
-   } 
+   } else { 
+      printf("%d is already in the list\n", value);
+      return 0;
+   }
 } 
 
 void Print(struct list_node_s* head_p) {
