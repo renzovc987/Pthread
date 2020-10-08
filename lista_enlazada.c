@@ -38,7 +38,7 @@ int main(void) {
             value = (rand() % (101));
             for(int i = 1;i<=1000;i++)
             	Insert(value, &head_p);
-            if(contador>1)
+            if(contador>=1)
             {
             	printf("%s","Nueva insercion");
             	srand(time(&t));
