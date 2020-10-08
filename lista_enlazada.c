@@ -98,10 +98,7 @@ int Insert(int value, struct list_node_s** head_pp) {
       else
          pred_p->next = temp_p;
       return 1;
-   } else { 
-      printf("%d is already in the list\n", value);
-      return 0;
-   }
+   } 
 } 
 
 void Print(struct list_node_s* head_p) {
