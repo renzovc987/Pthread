@@ -40,7 +40,7 @@ int main(void) {
             	Insert(value, &head_p);
             if(contador>=1)
             {
-            	printf("%s","Nueva insercion");
+            	printf("%s","Nueva insercion\n");
             	srand(time(&t));
 	            value = (rand() % (101));
 	            GET_TIME(start);
