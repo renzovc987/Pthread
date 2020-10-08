@@ -30,10 +30,11 @@ int main(void) {
       switch (command) {
          case 'i': 
          case 'I': 
-            value = Get_value();
+            value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            Insert(value, &head_p);
+            for(int i = 1;i<=1000;i++)
+            	Insert(value, &head_p);
             pthread_mutex_unlock(&list_mutex);  
             GET_TIME(finish);
             elapsed = finish - start;
@@ -46,10 +47,11 @@ int main(void) {
             break;
          case 'm': 
          case 'M':
-            value = Get_value();
+            value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            Member(value, head_p);
+            for(int i = 1;i<1000;i++)
+            	Member(value, head_p);
             pthread_mutex_unlock(&list_mutex); 
             GET_TIME(finish);  
             elapsed = finish - start;
