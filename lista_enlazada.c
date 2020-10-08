@@ -6,6 +6,7 @@
 
             
 pthread_mutex_t list_mutex;
+time_t t;
 double start,finish,elapsed;
 struct list_node_s {
    int    data;
@@ -31,7 +32,6 @@ int main(void) {
       switch (command) {
          case 'i': 
          case 'I': 
-         	time_t t;
          	srand(time(&t));
             value = (rand() % (101));
             GET_TIME(start);
@@ -50,7 +50,6 @@ int main(void) {
             break;
          case 'm': 
          case 'M':
-         	time_t t;
          	srand(time(&t));
             value = (rand() % (101));
             GET_TIME(start);
@@ -64,7 +63,6 @@ int main(void) {
             break;
          case 'd':
          case 'D':
-         	time_t t;
          	srand(time(&t));
             value = (rand() % (101));
             GET_TIME(start);
