@@ -29,6 +29,7 @@ int main(void) {
 
    command = Get_command();
    while (command != 'q' && command != 'Q') {
+   	  elapsed = 0;
       switch (command) {
          case 'i': 
          case 'I': 
@@ -40,8 +41,7 @@ int main(void) {
             	Insert(value, &head_p);
             pthread_mutex_unlock(&list_mutex);  
             GET_TIME(finish);
-            elapsed = finish - start;
-            printf("Tiempo = %e segundos\n", elapsed);
+            elapsed = elapsed + (finish - start);
 
             break;
          case 'p':
@@ -54,12 +54,11 @@ int main(void) {
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            for(int i = 1;i<=100000;i++)
+            for(int i = 1;i<=90000;i++)
             	Member(value, head_p);
             pthread_mutex_unlock(&list_mutex); 
             GET_TIME(finish);  
-            elapsed = finish - start;
-            printf("Tiempo = %e segundos\n", elapsed);
+            elapsed = elapsed + (finish - start);
             break;
          case 'd':
          case 'D':
@@ -71,8 +70,7 @@ int main(void) {
             	Delete(value, &head_p);  
             pthread_mutex_unlock(&list_mutex);
             GET_TIME(finish);
-            elapsed = finish - start;
-            printf("Tiempo = %e segundos\n", elapsed);
+            elapsed = elapsed + (finish - start);
             break;
          default:
             printf("There is no %c command\n", command);
@@ -80,6 +78,7 @@ int main(void) {
       }
       command = Get_command();
    }
+   printf("Tiempo = %e segundos\n", elapsed);
    Free_list(&head_p);
 
    return 0;
@@ -178,14 +177,14 @@ void Free_list(struct list_node_s** head_pp) {
    succ_p = curr_p->next;
    while (succ_p != NULL) {
 #ifdef DEBUG
-      printf("Freeing %d\n", curr_p->data);
+      printf("Liberando %d\n", curr_p->data);
 #endif
       free(curr_p);
       curr_p = succ_p;
       succ_p = curr_p->next;
    }
 #ifdef DEBUG
-   printf("Freeing %d\n", curr_p->data);
+   printf("Liberando %d\n", curr_p->data);
 #endif
    free(curr_p);
    *head_pp = NULL;
