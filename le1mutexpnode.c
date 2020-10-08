@@ -8,6 +8,7 @@
 
 time_t t;
 double start,finish,elapsed;
+pthread_mutex_t head_p_mutex;
 struct list_node_s {
    int    data;
    struct list_node_s* next;
