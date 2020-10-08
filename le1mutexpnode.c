@@ -11,7 +11,7 @@ double start,finish,elapsed;
 struct list_node_s {
    int    data;
    struct list_node_s* next;
-   pthread_mutex_t list_mutex;
+   pthread_mutex_t mutex;
 };
 
 int  Insert(int value, struct list_node_s** head_p);
@@ -130,23 +130,23 @@ int Member(int value) {
    struct list_node_s* temp_p;
    pthread_mutex_lock(&head_p_mutex);
    temp_p = head_p;
-   while (temp p != NULL && temp p->data < value) {
-      if (temp p->next != NULL)
+   while (temp_p != NULL && temp_p->data < value) {
+      if (temp_p->next != NULL)
          pthread_mutex_lock(&(temp_p->next->mutex));
-   if (temp p == head p)
-      pthread_mutex_unlock(&head p mutex);
-   pthread_mutex_unlock(&(temp p->mutex));
-   temp_p = temp p->next;
+   if (temp_p == head_p)
+      pthread_mutex_unlock(&head_p_mutex);
+   pthread_mutex_unlock(&(temp_p->mutex));
+   temp_p = temp_p->next;
  }
  if (temp_p == NULL || temp_p->data > value){
     if (temp_p == head_p)
-         pthread_mutex_unlock(&head_p mutex);
-    if (temp p != NULL)
+         pthread_mutex_unlock(&head_p_mutex);
+    if (temp_p != NULL)
          pthread_mutex_unlock(&(temp_p->mutex));
    return 0;
  } else {
-      if (temp p == head p)
-         pthread_mutex_unlock(&head_p mutex);
+      if (temp_p == head p)
+         pthread_mutex_unlock(&head_p_mutex);
       pthread_mutex_unlock(&(temp_p->mutex));
       return 1;
    }
