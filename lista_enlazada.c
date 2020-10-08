@@ -31,7 +31,8 @@ int main(void) {
       switch (command) {
          case 'i': 
          case 'I': 
-         	srand(time(0));
+         	time_t t;
+         	srand(time(t));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
@@ -49,11 +50,12 @@ int main(void) {
             break;
          case 'm': 
          case 'M':
-         	srand(time(0));
+         	time_t t;
+         	srand(time(t));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            for(int i = 1;i<1000;i++)
+            for(int i = 1;i<=100000;i++)
             	Member(value, head_p);
             pthread_mutex_unlock(&list_mutex); 
             GET_TIME(finish);  
@@ -62,10 +64,13 @@ int main(void) {
             break;
          case 'd':
          case 'D':
-            value = Get_value();
+         	time_t t;
+         	srand(time(t));
+            value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            Delete(value, &head_p);  
+            for(int i = 1;i<=500;i++)
+            	Delete(value, &head_p);  
             pthread_mutex_unlock(&list_mutex);
             GET_TIME(finish);
             elapsed = finish - start;
@@ -160,7 +165,7 @@ int Delete(int value, struct list_node_s** head_pp) {
       }
       return 1;
    } else {
-   printf("%d is not in the list\n", value);
+   printf("%d no esta en la lista\n", value);
       return 0;
    }
 }  
@@ -198,14 +203,14 @@ int  Is_empty(struct list_node_s* head_p) {
 
 char Get_command(void) {
    char c;
-   printf("%s","Please enter a command:  ");
+   printf("%s","Ingrese comando:  ");
    scanf(" %c", &c);
    return c;
 }  
 
 int  Get_value(void) {
    int val;
-   printf("Please enter a value:  ");
+   printf("Ingrese valor:  ");
    scanf("%d", &val);
    return val;
 }  
