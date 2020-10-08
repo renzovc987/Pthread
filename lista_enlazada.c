@@ -26,14 +26,14 @@ int main(void) {
    char command;
    int  value;
    struct list_node_s* head_p = NULL;  
-
+   elapsed = 0;
+   printf("%s","tiempo iniciado\n");
+   printf("%e",elapsed);
+   printf("%s","Hola\n");
    command = Get_command();
    int contador = 0;
    while (command != 'q' && command != 'Q') {
-   	  elapsed = 0;
-   	  printf("%s","tiempo iniciado\n");
-   	  printf("%e",elapsed);
-   	  printf("%s","Hola\n");
+
       switch (command) {
          case 'i': 
          case 'I': 
