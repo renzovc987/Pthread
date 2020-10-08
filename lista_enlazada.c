@@ -45,7 +45,7 @@ int main(void) {
 	            value = (rand() % (101));
 	            GET_TIME(start);
 	            pthread_mutex_lock(&list_mutex);
-	            for(int i = 1;i<=1000;i++)
+	            for(int i = 1;i<=50;i++)
 	            	Insert(value, &head_p);
 	            pthread_mutex_unlock(&list_mutex);  
 	            GET_TIME(finish);
@@ -64,7 +64,7 @@ int main(void) {
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            for(int i = 1;i<=90000;i++)
+            for(int i = 1;i<=99900;i++)
             	Member(value, head_p);
             pthread_mutex_unlock(&list_mutex); 
             GET_TIME(finish);  
@@ -76,7 +76,7 @@ int main(void) {
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            for(int i = 1;i<=1000;i++)
+            for(int i = 1;i<=50;i++)
             	Delete(value, &head_p);  
             pthread_mutex_unlock(&list_mutex);
             GET_TIME(finish);
