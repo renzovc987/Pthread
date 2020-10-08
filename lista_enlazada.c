@@ -5,7 +5,7 @@
 
             
 pthread_mutex_t list_mutex;
-
+double start,finish,elapsed;
 struct list_node_s {
    int    data;
    struct list_node_s* next;
@@ -31,9 +31,14 @@ int main(void) {
          case 'i': 
          case 'I': 
             value = Get_value();
+            GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
             Insert(value, &head_p);
             pthread_mutex_unlock(&list_mutex);  
+            GET_TIME(finish);
+            elapsed = finish - start;
+            printf("Tiempo = %e segundos\n", elapsed);
+
             break;
          case 'p':
          case 'P':
@@ -42,16 +47,24 @@ int main(void) {
          case 'm': 
          case 'M':
             value = Get_value();
+            GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
             Member(value, head_p);
-            pthread_mutex_unlock(&list_mutex);   
+            pthread_mutex_unlock(&list_mutex); 
+            GET_TIME(finish);  
+            elapsed = finish - start;
+            printf("Tiempo = %e segundos\n", elapsed);
             break;
          case 'd':
          case 'D':
             value = Get_value();
+            GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
             Delete(value, &head_p);  
             pthread_mutex_unlock(&list_mutex);
+            GET_TIME(finish);
+            elapsed = finish - start;
+            printf("Tiempo = %e segundos\n", elapsed);
             break;
          default:
             printf("There is no %c command\n", command);
