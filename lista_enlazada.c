@@ -32,7 +32,7 @@ int main(void) {
          case 'i': 
          case 'I': 
          	time_t t;
-         	srand(time(t));
+         	srand(time(&t));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
@@ -51,7 +51,7 @@ int main(void) {
          case 'm': 
          case 'M':
          	time_t t;
-         	srand(time(t));
+         	srand(time(&t));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
@@ -65,7 +65,7 @@ int main(void) {
          case 'd':
          case 'D':
          	time_t t;
-         	srand(time(t));
+         	srand(time(&t));
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
