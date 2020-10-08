@@ -63,7 +63,7 @@ int main(void) {
             value = (rand() % (101));
             GET_TIME(start);
             for(int i = 1;i<=99900;i++)
-            	Member(value, head_p);
+            	Member(value,head_p);
             GET_TIME(finish);  
             elapsed = elapsed + (finish - start);
             break;
@@ -126,7 +126,7 @@ void Print(struct list_node_s* head_p) {
    printf("\n");
 }  
 
-int Member(int value) {
+int Member(int value,struct list_node_s* head_p) {
    struct list_node_s* temp_p;
    pthread_mutex_lock(&head_p_mutex);
    temp_p = head_p;
@@ -145,7 +145,7 @@ int Member(int value) {
          pthread_mutex_unlock(&(temp_p->mutex));
    return 0;
  } else {
-      if (temp_p == head p)
+      if (temp_p == head_p)
          pthread_mutex_unlock(&head_p_mutex);
       pthread_mutex_unlock(&(temp_p->mutex));
       return 1;
