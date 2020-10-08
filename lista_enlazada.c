@@ -31,6 +31,9 @@ int main(void) {
    int contador = 0;
    while (command != 'q' && command != 'Q') {
    	  elapsed = 0;
+   	  printf("%s","tiempo iniciado\n");
+   	  printf("%e",elapsed);
+   	  printf("%s","Hola\n");
       switch (command) {
          case 'i': 
          case 'I': 
