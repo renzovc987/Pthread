@@ -129,10 +129,10 @@ int  Member(int value, struct list_node_s* head_p) {
       curr_p = curr_p->next;
 
    if (curr_p == NULL || curr_p->data > value) {
-      printf("%d is not in the list\n", value);
+      printf("%d no esta en la lista\n", value);
       return 0;
    } else {
-      printf("%d is in the list\n", value);
+      printf("%d esta en la lista\n", value);
       return 1;
    }
 } 
@@ -150,13 +150,13 @@ int Delete(int value, struct list_node_s** head_pp) {
       if (pred_p == NULL) { 
          *head_pp = curr_p->next;
 #ifdef DEBUG
-         printf("Freeing %d\n", value);
+         printf("liberando %d\n", value);
 #endif
          free(curr_p);
       } else { 
          pred_p->next = curr_p->next;
 #ifdef DEBUG
-         printf("Freeing %d\n", value);
+         printf("liberando %d\n", value);
 #endif
          free(curr_p);
       }
@@ -177,14 +177,14 @@ void Free_list(struct list_node_s** head_pp) {
    succ_p = curr_p->next;
    while (succ_p != NULL) {
 #ifdef DEBUG
-      printf("Liberando %d\n", curr_p->data);
+      printf("liberando %d\n", curr_p->data);
 #endif
       free(curr_p);
       curr_p = succ_p;
       succ_p = curr_p->next;
    }
 #ifdef DEBUG
-   printf("Liberando %d\n", curr_p->data);
+   printf("liberando %d\n", curr_p->data);
 #endif
    free(curr_p);
    *head_pp = NULL;
