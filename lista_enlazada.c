@@ -28,6 +28,7 @@ int main(void) {
    struct list_node_s* head_p = NULL;  
 
    command = Get_command();
+   int contador = 0;
    while (command != 'q' && command != 'Q') {
    	  elapsed = 0;
       switch (command) {
@@ -35,13 +36,22 @@ int main(void) {
          case 'I': 
          	srand(time(&t));
             value = (rand() % (101));
-            GET_TIME(start);
-            pthread_mutex_lock(&list_mutex);
             for(int i = 1;i<=1000;i++)
             	Insert(value, &head_p);
-            pthread_mutex_unlock(&list_mutex);  
-            GET_TIME(finish);
-            elapsed = elapsed + (finish - start);
+            if(contador>1)
+            {
+            	printf("%s","Nueva insercion");
+            	srand(time(&t));
+	            value = (rand() % (101));
+	            GET_TIME(start);
+	            pthread_mutex_lock(&list_mutex);
+	            for(int i = 1;i<=1000;i++)
+	            	Insert(value, &head_p);
+	            pthread_mutex_unlock(&list_mutex);  
+	            GET_TIME(finish);
+	            elapsed = elapsed + (finish - start);
+            }
+            contador++;
 
             break;
          case 'p':
@@ -66,7 +76,7 @@ int main(void) {
             value = (rand() % (101));
             GET_TIME(start);
             pthread_mutex_lock(&list_mutex);
-            for(int i = 1;i<=500;i++)
+            for(int i = 1;i<=1000;i++)
             	Delete(value, &head_p);  
             pthread_mutex_unlock(&list_mutex);
             GET_TIME(finish);
