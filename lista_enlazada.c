@@ -31,9 +31,9 @@ int main(void) {
          case 'i': 
          case 'I': 
             value = Get_value();
-            Pthread_mutex_lock(&list_mutex);
+            pthread_mutex_lock(&list_mutex);
             Insert(value, &head_p);
-            Pthread_mutex_unlock(&list_mutex);  
+            pthread_mutex_unlock(&list_mutex);  
             break;
          case 'p':
          case 'P':
@@ -42,16 +42,16 @@ int main(void) {
          case 'm': 
          case 'M':
             value = Get_value();
-            Pthread_mutex_lock(&list_mutex);
+            pthread_mutex_lock(&list_mutex);
             Member(value, head_p);
-            Pthread_mutex_unlock(&list_mutex);   
+            pthread_mutex_unlock(&list_mutex);   
             break;
          case 'd':
          case 'D':
             value = Get_value();
-            Pthread_mutex_lock(&list_mutex);
+            pthread_mutex_lock(&list_mutex);
             Delete(value, &head_p);  
-            Pthread_mutex_unlock(&list_mutex);
+            pthread_mutex_unlock(&list_mutex);
             break;
          default:
             printf("There is no %c command\n", command);
@@ -180,9 +180,8 @@ int  Is_empty(struct list_node_s* head_p) {
 } 
 
 char Get_command(void) {
-   char c
-
-   printf("Please enter a command:  ");
+   char c;
+   printf("%s","Please enter a command:  ");
    scanf(" %c", &c);
    return c;
 }  
